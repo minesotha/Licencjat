@@ -12,6 +12,10 @@ public class RaycastGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKey(KeyCode.Space) && lastLigh!=null)
+        {
+            MoveRaycast.MoveObject(lastLigh.gameObject);
+        }
 	
 	}
 

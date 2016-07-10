@@ -12,10 +12,10 @@ public class MovingWithMouse : MonoBehaviour {
 
 
 
+
     // Use this for initialization
     void Start () {
-	
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,28 +26,36 @@ public class MovingWithMouse : MonoBehaviour {
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
         //chowanie kursora
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             Cursor.visible = !Cursor.visible;
         }
 
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Space))
         {
+            //spacja zarezerowana do przesuwania obiektow
+        }
+        else { 
+
+            if (Input.GetKey(KeyCode.W))
+            {
+             
                 transform.Translate(Vector3.forward * moveSpeed);
 
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * moveSpeed);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * moveSpeed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * moveSpeed);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(Vector3.back * moveSpeed );
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Translate(Vector3.left * moveSpeed);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Translate(Vector3.right * moveSpeed );
+            }
         }
 
     }
