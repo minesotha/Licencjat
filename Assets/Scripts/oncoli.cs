@@ -7,4 +7,8 @@ public class oncoli : MonoBehaviour {
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
+    void OnCollisionExit(Collision coli)
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
 }
