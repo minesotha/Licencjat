@@ -16,7 +16,7 @@ public class MoveRaycast : MonoBehaviour
         {
             // target.transform.Translate(Vector3.forward * moveSpeed);
 
-             target.transform.position = Vector3.MoveTowards(target.transform.position, new Vector3(-camera.x, target.transform.position.y, -camera.z), moveSpeed);
+             target.transform.position = Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), -moveSpeed);
         }
         if (Input.GetKey(KeyCode.S))
         {
