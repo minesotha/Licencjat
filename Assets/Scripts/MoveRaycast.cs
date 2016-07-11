@@ -16,10 +16,8 @@ public class MoveRaycast : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            if (distance > minDistanceBetween)
-            {
                 target.transform.position = Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), -moveSpeed);
-            }
+       
         }
         if (Input.GetKey(KeyCode.S))
         {
