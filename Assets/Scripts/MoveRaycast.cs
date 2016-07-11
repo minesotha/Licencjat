@@ -8,7 +8,7 @@ public class MoveRaycast : MonoBehaviour
     {
 
 
-            if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
             {
                 target.transform.Translate(Vector3.forward * moveSpeed);
 
@@ -26,6 +26,7 @@ public class MoveRaycast : MonoBehaviour
                 target.transform.Translate(Vector3.right * moveSpeed);
             }
         target.GetComponent<Rigidbody>().MovePosition(target.transform.position);
+
 
     }
 
