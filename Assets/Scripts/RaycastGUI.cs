@@ -9,14 +9,11 @@ public class RaycastGUI : MonoBehaviour {
     //czy jest cos przeciagane?
     bool doLookUp = true;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.Space) && lastLigh!=null)
+
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.Space) && lastLigh != null)
         {
             lastLigh.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             MoveRaycast.MoveObject(lastLigh.gameObject);
@@ -29,11 +26,8 @@ public class RaycastGUI : MonoBehaviour {
             lastDrag.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             doLookUp = true;
         }
-	
-	}
 
-    void FixedUpdate()
-    {
+
         if (doLookUp == true)
         {
             Vector3 fwd = transform.TransformDirection(Vector3.forward);

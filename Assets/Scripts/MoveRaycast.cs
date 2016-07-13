@@ -16,14 +16,15 @@ public class MoveRaycast : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-                target.transform.position = Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), -moveSpeed);
+            //TODO tu tez dodac sile
+            target.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), -moveSpeed));
        
         }
         if (Input.GetKey(KeyCode.S))
         {
             if (distance > minDistanceBetween)
             {
-                target.transform.position = Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), moveSpeed);
+                target.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), moveSpeed));
             }
         }
 
@@ -35,7 +36,8 @@ public class MoveRaycast : MonoBehaviour
             dir.y = 0;
             dir.Normalize();
             Vector3 ver =   target.transform.InverseTransformDirection(dir);
-            target.transform.Translate(ver * -moveSpeed);
+            //target.transform.Translate(ver * -moveSpeed);
+            target.GetComponent<Rigidbody>().AddRelativeForce(ver * -moveSpeed*10,ForceMode.Acceleration);
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -45,14 +47,13 @@ public class MoveRaycast : MonoBehaviour
             dir.y = 0;
             dir.Normalize();
             Vector3 ver = target.transform.InverseTransformDirection(dir);
-            target.transform.Translate(ver * moveSpeed);
+            // target.transform.Translate(ver * moveSpeed);
+            target.GetComponent<Rigidbody>().AddRelativeForce(ver * moveSpeed*10, ForceMode.Acceleration);
         }
-        target.GetComponent<Rigidbody>().MovePosition(target.transform.position);
-
 
     }
 
 
 
-
+    //todo stopowa item na keyup
 }
