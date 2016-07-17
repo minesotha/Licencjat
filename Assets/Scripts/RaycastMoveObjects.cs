@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RaycastGUI : MonoBehaviour {
+public class RaycastMoveObjects : MonoBehaviour {
     public float seeDistance = 10.0f;
     Light lastLigh = null;
     GameObject currTarget = null;
@@ -27,6 +27,9 @@ public class RaycastGUI : MonoBehaviour {
             doLookUp = true;
         }
 
+      
+
+
 
         if (doLookUp == true)
         {
@@ -47,6 +50,14 @@ public class RaycastGUI : MonoBehaviour {
 
                     lastLigh = hit.collider.gameObject.GetComponent<Light>();
                     lastLigh.enabled = true;
+                }
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (lastLigh != null)
+                    {
+                        lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+                    }
                 }
 
             }

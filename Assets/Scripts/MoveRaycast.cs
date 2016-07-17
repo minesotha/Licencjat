@@ -16,27 +16,43 @@ public class MoveRaycast : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            //TODO tu tez dodac sile
-            //target.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), -moveSpeed));
-            Vector3 dir;
-            dir = Camera.main.transform.up;
-            dir.y = 0;
-            dir.Normalize();
-            Vector3 ver = target.transform.InverseTransformDirection(dir);
-            target.GetComponent<Rigidbody>().AddRelativeForce(ver * moveSpeed, ForceMode.Impulse);
-
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            if (distance > minDistanceBetween)
+  
+            //dla poruszania elementow na scianie
+            if (target.tag == "wallItem")
             {
-                // target.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(target.transform.position, new Vector3(camera.x, target.transform.position.y, camera.z), moveSpeed));
+                target.GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * moveSpeed, ForceMode.VelocityChange);
+            }
+            //dla 'normalnych' elementow
+            else
+            {
                 Vector3 dir;
                 dir = Camera.main.transform.up;
                 dir.y = 0;
                 dir.Normalize();
                 Vector3 ver = target.transform.InverseTransformDirection(dir);
-                target.GetComponent<Rigidbody>().AddRelativeForce(ver * -moveSpeed, ForceMode.VelocityChange);
+                target.GetComponent<Rigidbody>().AddRelativeForce(ver * moveSpeed, ForceMode.VelocityChange);
+
+            }
+
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            //dla poruszania elementow na scianie
+            if (target.tag == "wallItem")
+            {
+                target.GetComponent<Rigidbody>().AddRelativeForce(Vector3.down * moveSpeed, ForceMode.VelocityChange);
+            }
+            else
+            {
+                if (distance > minDistanceBetween)
+                {
+                    Vector3 dir;
+                    dir = Camera.main.transform.up;
+                    dir.y = 0;
+                    dir.Normalize();
+                    Vector3 ver = target.transform.InverseTransformDirection(dir);
+                    target.GetComponent<Rigidbody>().AddRelativeForce(ver * -moveSpeed, ForceMode.VelocityChange);
+                }
             }
         }
 

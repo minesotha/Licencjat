@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveObjects : MonoBehaviour {
+public class MovingWithMouse : MonoBehaviour {
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
