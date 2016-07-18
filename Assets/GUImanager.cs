@@ -14,13 +14,15 @@ public class GUImanager : MonoBehaviour {
     {
         this.gameObject.SetActive(false);
     }
-	void Update () {
+	void FixedUpdate () {
         if (this.isActiveAndEnabled)
         {
             if (isColliding==false)
             {
                 lastRotation =  transform.rotation;
                 transform.LookAt(Camera.main.transform);
+                transform.Rotate(0, transform.rotation.y, 0);
+                
             }
             else
             {
@@ -36,8 +38,8 @@ public class GUImanager : MonoBehaviour {
         {
             Debug.Log("self trigger enter");
             isColliding = true;
-            sizeX= parentObject.GetComponent<Renderer>().bounds.size.x/2 + 2;
-            sizeY = parentObject.GetComponent<Renderer>().bounds.size.y/2 + 2;
+            sizeX= parentObject.GetComponent<Collider>().bounds.size.x/2 + 2;
+            sizeY = parentObject.GetComponent<Collider>().bounds.size.y/2 + 2;
             transform.Translate(Vector3.forward * sizeX);
 
         }

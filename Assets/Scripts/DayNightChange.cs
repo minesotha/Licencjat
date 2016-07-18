@@ -26,6 +26,8 @@ public class DayNightChange : MonoBehaviour {
 	void Update () {
 
         if (Input.GetKeyUp(KeyCode.N)){
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
             if (isDay)
             {
                 foreach(GameObject light in day)
