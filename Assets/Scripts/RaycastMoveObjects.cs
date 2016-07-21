@@ -8,7 +8,7 @@ public class RaycastMoveObjects : MonoBehaviour {
     GameObject lastDrag = null;
     //czy jest cos przeciagane?
     bool doLookUp = true;
-
+    UnityEngine.UI.Button lastBtn;
 
 
     void FixedUpdate()
@@ -19,6 +19,7 @@ public class RaycastMoveObjects : MonoBehaviour {
             MoveRaycast.MoveObject(lastLigh.gameObject);
             lastDrag = lastLigh.gameObject;
             doLookUp = false;
+            lastBtn = null;
 
         }
         if (Input.GetKeyUp(KeyCode.Space))
@@ -45,6 +46,20 @@ public class RaycastMoveObjects : MonoBehaviour {
 
                 }
                 Debug.Log("Widzę: " + hit.collider.gameObject.name);
+                if (lastBtn != null)
+                {
+                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(20, 50, true);
+                    lastBtn = null;
+                }
+
+                if (hit.collider.gameObject.name.Equals("ChangeColorButton"))
+                {
+              
+                    lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
+                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(255,100, true);
+                    //btn.Select();
+                }
+
                 if (hit.collider.gameObject.GetComponent<Light>() != null)
                 {
 

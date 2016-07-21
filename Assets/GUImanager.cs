@@ -21,7 +21,7 @@ public class GUImanager : MonoBehaviour {
             {
                 lastRotation =  transform.rotation;
                 transform.LookAt(Camera.main.transform);
-                transform.Rotate(0, transform.rotation.y, 0);
+               
                 
             }
             else
@@ -58,5 +58,10 @@ public class GUImanager : MonoBehaviour {
         {
             isColliding = false;
         }
+    }
+    public void SetColor()
+    {
+        //test
+        parentObject.GetComponentInChildren<Renderer>().material.color = Color.cyan;
     }
 }
