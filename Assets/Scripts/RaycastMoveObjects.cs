@@ -46,9 +46,10 @@ public class RaycastMoveObjects : MonoBehaviour {
 
                 }
                 Debug.Log("Widzę: " + hit.collider.gameObject.name);
-                if (lastBtn != null)
+                if (lastBtn != null && lastBtn != hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>())
                 {
-                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(20, 50, true);
+                    lastBtn.Select();
+                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(0.5f,0.2f, false);
                     lastBtn = null;
                 }
 
@@ -56,7 +57,7 @@ public class RaycastMoveObjects : MonoBehaviour {
                 {
               
                     lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
-                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(255,100, true);
+                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000,20, false);
                     //btn.Select();
                 }
 
