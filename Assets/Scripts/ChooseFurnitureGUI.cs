@@ -21,7 +21,8 @@ public class ChooseFurnitureGUI : MonoBehaviour {
             //  float moveX = gameObject.GetComponent<Renderer>().bounds.size.x/2 + 1;
             //  canvas.transform.Translate(Vector3.up * moveY);
             //wysokosc kamery:
-            canvas.transform.Translate(Vector3.up * Camera.main.transform.position.y);
+            //canvas.transform.Translate(Vector3.up * Camera.main.transform.position.y);
+            //canvas.transform.Translate(Vector3.up * 100);
             canvas.transform.LookAt(Camera.main.transform);
             canvas.transform.Translate(Vector3.forward * moveZ);
             canvas.GetComponent<GUImanager>().isStarting = true;

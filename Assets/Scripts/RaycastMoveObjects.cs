@@ -11,6 +11,18 @@ public class RaycastMoveObjects : MonoBehaviour {
     UnityEngine.UI.Button lastBtn;
 
 
+    public void SetColor()
+    {
+        //TODO: not last light, but canvas target 
+        foreach (Transform child in lastLigh.transform)
+        {
+            child.gameObject.GetComponent<Renderer>().material.color = lastBtn.GetComponent<UnityEngine.UI.Image>().color;
+        }
+    }
+    
+
+
+
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Space) && lastLigh != null)
@@ -53,12 +65,18 @@ public class RaycastMoveObjects : MonoBehaviour {
                     lastBtn = null;
                 }
 
-                if (hit.collider.gameObject.name.Equals("ChangeColorButton"))
+                if (hit.collider.gameObject.tag.Equals("colorButton"))
                 {
               
                     lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
                     lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000,20, false);
                     //btn.Select();
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        
+                        SetColor();
+                        
+                    }
                 }
 
                 if (hit.collider.gameObject.GetComponent<Light>() != null)
@@ -66,13 +84,14 @@ public class RaycastMoveObjects : MonoBehaviour {
 
                     lastLigh = hit.collider.gameObject.GetComponent<Light>();
                     lastLigh.enabled = true;
-                }
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (lastLigh != null)
+
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+                        if (lastLigh != null)
+                        {
+                            lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+                        }
                     }
                 }
 
