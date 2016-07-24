@@ -51,50 +51,55 @@ public class RaycastMoveObjects : MonoBehaviour {
 
             if (Physics.Raycast(transform.position, fwd, out hit, seeDistance))
             {
-                currTarget = transform.gameObject;
-                if (lastLigh != null && lastLigh != currTarget.GetComponent<Light>())
+                if (hit.transform.gameObject != currTarget)
                 {
-                    lastLigh.enabled = false;
+                    currTarget = transform.gameObject;
 
-                }
-                Debug.Log("Widzę: " + hit.collider.gameObject.name);
-                if (lastBtn != null && lastBtn != hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>())
-                {
-                    lastBtn.Select();
-                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(0.5f,0.2f, false);
-                    lastBtn = null;
-                }
 
-                if (hit.collider.gameObject.tag.Equals("colorButton"))
-                {
-              
-                    lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
-                    lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000,20, false);
-                    //btn.Select();
-                    if (Input.GetMouseButtonDown(0))
+
+                    if (lastLigh != null && lastLigh != currTarget.GetComponent<Light>())
                     {
-                        
-                        SetColor();
-                        
+                        lastLigh.enabled = false;
+
                     }
-                }
-
-                if (hit.collider.gameObject.GetComponent<Light>() != null)
-                {
-
-                    lastLigh = hit.collider.gameObject.GetComponent<Light>();
-                    lastLigh.enabled = true;
-
-
-                    if (Input.GetMouseButtonDown(0))
+                    Debug.Log("Widzę: " + hit.collider.gameObject.name);
+                    if (lastBtn != null && lastBtn != hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>())
                     {
-                        if (lastLigh != null)
+                        lastBtn.Select();
+                        lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(0.2f, 0.2f, false);
+                        lastBtn = null;
+                    }
+
+                    if (hit.collider.gameObject.tag.Equals("colorButton"))
+                    {
+
+                        lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
+                        lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000, 20, false);
+                        //btn.Select();
+                        if (Input.GetMouseButtonDown(0))
                         {
-                            lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+
+                            SetColor();
+
+                        }
+                    }
+
+                    if (hit.collider.gameObject.GetComponent<Light>() != null)
+                    {
+
+                        lastLigh = hit.collider.gameObject.GetComponent<Light>();
+                        lastLigh.enabled = true;
+
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            if (lastLigh != null)
+                            {
+                                lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+                            }
                         }
                     }
                 }
-
             }
         }
     }

@@ -4,12 +4,14 @@ using System.Collections;
 public class DayNightChange : MonoBehaviour {
     private GameObject[] day;
     private GameObject[] night;
+    public Material daymat;
+    public Material nightmat;
     bool isDay;
     
     void Start()
     {
         day = GameObject.FindGameObjectsWithTag("daylight");
-         night = GameObject.FindGameObjectsWithTag("nightlight");
+        night = GameObject.FindGameObjectsWithTag("nightlight");
 
         foreach (GameObject light in day)
         {
@@ -38,6 +40,7 @@ public class DayNightChange : MonoBehaviour {
                 {
                     light.SetActive(true);
                 }
+                RenderSettings.skybox = nightmat;
                 isDay = false;
             }
             else
@@ -50,6 +53,7 @@ public class DayNightChange : MonoBehaviour {
                 {
                     light.SetActive(false);
                 }
+                RenderSettings.skybox = daymat;
                 isDay = true;
             }
 
