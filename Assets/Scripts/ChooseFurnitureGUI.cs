@@ -36,6 +36,12 @@ public class ChooseFurnitureGUI : MonoBehaviour {
         }
     }
     
+    public void hideGui()
+    {
+        canvas.GetComponent<GUImanager>().parentObject = null;
+        canvas.SetActive(false);
+        isSet = false;
+    }
 
 
 }

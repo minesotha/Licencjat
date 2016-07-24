@@ -56,6 +56,7 @@ public class RaycastMoveObjects : MonoBehaviour {
 
             if (Physics.Raycast(transform.position, fwd, out hit, seeDistance))
             {
+               // Debug.Log("Widzę: " + hit.collider.gameObject.name);
                 if (hit.transform.gameObject != currTarget)
                 {
                     currTarget = transform.gameObject;
@@ -67,7 +68,7 @@ public class RaycastMoveObjects : MonoBehaviour {
                         lastLigh.enabled = false;
 
                     }
-                    Debug.Log("Widzę: " + hit.collider.gameObject.name);
+         
                     if (lastBtn != null && lastBtn != hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>())
                     {
                         lastBtn.Select();
@@ -95,14 +96,28 @@ public class RaycastMoveObjects : MonoBehaviour {
                         lastLigh = hit.collider.gameObject.GetComponent<Light>();
                         lastLigh.enabled = true;
 
-
-                        if (Input.GetMouseButtonDown(0))
+                        Debug.Log("dystans: " + hit.distance);
+                        if (hit.distance < 60  && hit.distance >20)
                         {
+
+                        //}
+
+                        //if (Input.GetMouseButtonDown(0))
+                        //{
                             if (lastLigh != null)
                             {
                                 canvasTarget = lastLigh.gameObject;
                                 canvasTarget.GetComponent<ChooseFurnitureGUI>().setGui();
                             }
+                        }
+                        else
+                        {
+                            if (lastLigh != null)
+                            {
+                                
+                                canvasTarget.GetComponent<ChooseFurnitureGUI>().hideGui();
+                            }
+
                         }
                     }
                 }

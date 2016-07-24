@@ -49,7 +49,7 @@ public class GUImanager : MonoBehaviour {
     {
         if(other.gameObject.Equals(parentObject))
         {
-            transform.Translate(Vector3.forward * 10);
+            transform.Translate(Vector3.forward * 2);
         }
 
     }
