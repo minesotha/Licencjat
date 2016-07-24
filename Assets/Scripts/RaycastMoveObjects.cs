@@ -16,7 +16,10 @@ public class RaycastMoveObjects : MonoBehaviour {
         //TODO: not last light, but canvas target 
         foreach (Transform child in lastLigh.transform)
         {
-            child.gameObject.GetComponent<Renderer>().material.color = lastBtn.GetComponent<UnityEngine.UI.Image>().color;
+            if (child.tag == "colorable")
+            {
+                child.gameObject.GetComponent<Renderer>().material.color = lastBtn.GetComponent<UnityEngine.UI.Image>().color;
+            }
         }
     }
     
