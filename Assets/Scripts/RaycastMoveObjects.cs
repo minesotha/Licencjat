@@ -9,12 +9,14 @@ public class RaycastMoveObjects : MonoBehaviour {
     //czy jest cos przeciagane?
     bool doLookUp = true;
     UnityEngine.UI.Button lastBtn;
+    GameObject canvasTarget;
 
 
     public void SetColor()
     {
+        
         //TODO: not last light, but canvas target 
-        foreach (Transform child in lastLigh.transform)
+        foreach (Transform child in canvasTarget.transform)
         {
             if (child.tag == "colorable")
             {
@@ -98,7 +100,8 @@ public class RaycastMoveObjects : MonoBehaviour {
                         {
                             if (lastLigh != null)
                             {
-                                lastLigh.gameObject.GetComponent<ChooseFurnitureGUI>().setGui();
+                                canvasTarget = lastLigh.gameObject;
+                                canvasTarget.GetComponent<ChooseFurnitureGUI>().setGui();
                             }
                         }
                     }

@@ -36,11 +36,12 @@ public class GUImanager : MonoBehaviour {
     {
         if (other.gameObject.Equals(parentObject))
         {
+            this.enabled = false;
             Debug.Log("self trigger enter");
             isColliding = true;
             sizeX= parentObject.GetComponent<Collider>().bounds.size.x/2 + 2;
-            sizeY = parentObject.GetComponent<Collider>().bounds.size.y/2 + 2;
-            transform.Translate(Vector3.forward * sizeX);
+            //sizeY = parentObject.GetComponent<Collider>().bounds.size.y/2 + 2;
+            transform.Translate(Vector3.forward * sizeX/2);
 
         }
     }
@@ -48,7 +49,7 @@ public class GUImanager : MonoBehaviour {
     {
         if(other.gameObject.Equals(parentObject))
         {
-            transform.Translate(Vector3.forward * (sizeY-sizeX));
+            transform.Translate(Vector3.forward * 10);
         }
 
     }
@@ -58,6 +59,7 @@ public class GUImanager : MonoBehaviour {
         {
             isColliding = false;
         }
+         this.enabled = true;
     }
     //public void SetColor()
     //{
