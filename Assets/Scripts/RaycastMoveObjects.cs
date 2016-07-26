@@ -53,7 +53,10 @@ public class RaycastMoveObjects : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            lastDrag.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            if (lastDrag.gameObject.name != "Football")
+            {
+                 lastDrag.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
             doLookUp = true;
             lastLigh.enabled = true;
         }
@@ -119,8 +122,11 @@ public class RaycastMoveObjects : MonoBehaviour {
                         //{
                             if (lastLigh != null)
                             {
-                                canvasTarget = lastLigh.gameObject;
-                                canvasTarget.GetComponent<ChooseFurnitureGUI>().setGui();
+                                if (lastLigh.name != "Football")
+                                {
+                                    canvasTarget = lastLigh.gameObject;
+                                    canvasTarget.GetComponent<ChooseFurnitureGUI>().setGui();
+                                }
                             }
                         }
                         else
