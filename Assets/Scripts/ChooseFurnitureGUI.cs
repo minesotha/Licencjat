@@ -12,6 +12,7 @@ public class ChooseFurnitureGUI : MonoBehaviour {
 
     public void setGui()
     {
+
         if (isSet == false)
         {
             canvas.SetActive(true);

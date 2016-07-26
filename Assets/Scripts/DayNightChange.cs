@@ -6,12 +6,14 @@ public class DayNightChange : MonoBehaviour {
     private GameObject[] night;
     public Material daymat;
     public Material nightmat;
+    public ReflectionProbe reflection;
     bool isDay;
     
     void Start()
     {
         day = GameObject.FindGameObjectsWithTag("daylight");
         night = GameObject.FindGameObjectsWithTag("nightlight");
+        reflection = GameObject.FindGameObjectWithTag("reflection").GetComponent<ReflectionProbe>();
 
         foreach (GameObject light in day)
         {
@@ -30,6 +32,11 @@ public class DayNightChange : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.N)){
             AudioSource audio = GetComponent<AudioSource>();
             audio.Play();
+            //zabezpieczenie przed wyłączonym reflection dla poprawienia wydajnosci
+            if (reflection != null)
+            {
+                reflection.RenderProbe();
+            }
             if (isDay)
             {
                 foreach(GameObject light in day)

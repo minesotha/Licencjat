@@ -10,6 +10,12 @@ public class RaycastMoveObjects : MonoBehaviour {
     bool doLookUp = true;
     UnityEngine.UI.Button lastBtn;
     GameObject canvasTarget;
+    public int guiDistance = 80;
+
+    void Start()
+    {
+        GetComponent<CharacterController>().detectCollisions = false;
+    }
 
 
     public void SetColor()
@@ -32,6 +38,12 @@ public class RaycastMoveObjects : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space) && lastLigh != null)
         {
+            //wylaczamy gui przy przesuwaniu
+            if (lastLigh != null && canvasTarget!=null)
+            {
+                canvasTarget.GetComponent<ChooseFurnitureGUI>().hideGui();
+            }
+            lastLigh.enabled = false;
             lastLigh.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             MoveRaycast.MoveObject(lastLigh.gameObject);
             lastDrag = lastLigh.gameObject;
@@ -43,6 +55,7 @@ public class RaycastMoveObjects : MonoBehaviour {
         {
             lastDrag.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             doLookUp = true;
+            lastLigh.enabled = true;
         }
 
       
@@ -97,7 +110,7 @@ public class RaycastMoveObjects : MonoBehaviour {
                         lastLigh.enabled = true;
 
                         Debug.Log("dystans: " + hit.distance);
-                        if (hit.distance < 60  && hit.distance >20)
+                        if (hit.distance < guiDistance  && hit.distance >30)
                         {
 
                         //}
@@ -114,8 +127,11 @@ public class RaycastMoveObjects : MonoBehaviour {
                         {
                             if (lastLigh != null)
                             {
-                                
-                                canvasTarget.GetComponent<ChooseFurnitureGUI>().hideGui();
+                                if (canvasTarget != null)
+                                {
+                                    canvasTarget.GetComponent<ChooseFurnitureGUI>().hideGui();
+
+                                }
                             }
 
                         }
