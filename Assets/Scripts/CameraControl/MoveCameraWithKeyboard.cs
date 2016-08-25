@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MoveCameraWithKeyboard : MonoBehaviour {
-    public bool moveView=false;
+    public bool moveView = false;
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -15,17 +15,21 @@ public class MoveCameraWithKeyboard : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start() {
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate() {
         if (moveView == true)
         {
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
+            if (Input.GetJoystickNames().GetLength(0) < 1) {
 
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+
+                yaw += speedH * Input.GetAxis("Mouse X");
+                pitch -= speedV * Input.GetAxis("Mouse Y");
+
+                transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+            }
         }
 
 
@@ -36,7 +40,7 @@ public class MoveCameraWithKeyboard : MonoBehaviour {
         }
 
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space)||(Input.GetButton("Fire2")))
         {
             //spacja zarezerowana do przesuwania obiektow
         }

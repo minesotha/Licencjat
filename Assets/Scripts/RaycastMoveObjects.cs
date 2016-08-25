@@ -47,7 +47,7 @@ public class RaycastMoveObjects : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && lastLigh != null)
+        if ((Input.GetKey(KeyCode.Space)||(Input.GetButton("Fire2"))) && lastLigh != null)
         {
             //wylaczamy gui przy przesuwaniu
             if (lastLigh != null && canvasTarget!=null)
@@ -109,7 +109,7 @@ public class RaycastMoveObjects : MonoBehaviour {
                         lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
                         lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000, 20, false);
                         //btn.Select();
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetButton("Fire1"))
                         {
 
                             SetColor();
@@ -120,7 +120,7 @@ public class RaycastMoveObjects : MonoBehaviour {
                     {
                         lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
                         lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000, 20, false);
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetButton("Fire1"))
                         {
                             ChangeModel();
                         }
