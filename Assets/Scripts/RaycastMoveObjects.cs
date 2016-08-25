@@ -30,6 +30,17 @@ public class RaycastMoveObjects : MonoBehaviour {
             }
         }
     }
+    public void ChangeModel()
+    {
+        canvasTarget.GetComponent<ChooseFurnitureGUI>().hideGui();
+        var neu= Instantiate(canvasTarget.GetComponent<ModelList>().getModel(lastBtn.name), canvasTarget.transform.position, canvasTarget.transform.rotation);
+        Destroy(canvasTarget.gameObject);
+        currTarget = neu as GameObject;
+        lastDrag = null;
+        //canvasTarget = neu as GameObject;
+        //canvasTarget.GetComponent<ChooseFurnitureGUI>().setGui();
+
+    }
     
 
 
@@ -103,6 +114,15 @@ public class RaycastMoveObjects : MonoBehaviour {
 
                             SetColor();
 
+                        }
+                    }
+                    else if (hit.collider.gameObject.tag== "changeModelButton")
+                    {
+                        lastBtn = hit.collider.gameObject.GetComponent<UnityEngine.UI.Button>();
+                        lastBtn.GetComponent<UnityEngine.UI.Image>().CrossFadeAlpha(1000, 20, false);
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            ChangeModel();
                         }
                     }
 
